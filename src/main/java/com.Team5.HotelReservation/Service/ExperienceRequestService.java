@@ -22,7 +22,6 @@ public class ExperienceRequestService {
     }
 
 
-    @GetMapping
     public Experience getExperienceById(long expId){
         return experienceRepository.findById(expId).orElse(null);
     }
