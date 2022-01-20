@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name = "Trip")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 
 public class Trip {
 
@@ -41,5 +40,14 @@ public class Trip {
     @JoinColumn(name = "userId")
     private User userId;
 
-
+    public Trip(Long tripId, String checkIn, String checkOut, Room room, String location, Experience expId, Hotel hotelId, User userId) {
+        this.tripId = tripId;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.room = room;
+        this.location = location;
+        this.expId = expId;
+        this.hotelId = hotelId;
+        this.userId = userId;
+    }
 }

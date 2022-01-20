@@ -1,19 +1,14 @@
 package com.Team5.HotelReservation.Service;
 
-import com.Team5.HotelReservation.exception.RequestNotFoundException;
 import com.Team5.HotelReservation.model.Experience;
 import com.Team5.HotelReservation.repository.ExperienceRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
-
-import java.util.List;
 
 @Service
 public class ExperienceRequestService {
 
+    @Autowired
     private final ExperienceRepository experienceRepository;
 
 

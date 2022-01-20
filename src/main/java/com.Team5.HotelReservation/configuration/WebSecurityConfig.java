@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().and().authorizeRequests(authorizeRequests ->
                 authorizeRequests
-                        .antMatchers("/experience/**","/hotel/**","/user/**","/login").permitAll()
+                        .antMatchers("/experience/**","/hotel/**","/user/**","/login","/trip/**").permitAll()
                         .antMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
         )

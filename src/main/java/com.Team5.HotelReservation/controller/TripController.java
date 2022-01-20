@@ -5,23 +5,22 @@ import com.Team5.HotelReservation.Service.Room;
 import com.Team5.HotelReservation.Service.TripRequestService;
 import com.Team5.HotelReservation.exception.TripNotFoundException;
 import com.Team5.HotelReservation.model.Trip;
-import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
-@AllArgsConstructor
-@RequestMapping("/Trip")
+@RequestMapping("/trip")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TripController {
 
 
     private final TripRequestService requestService;
+
+    public TripController(TripRequestService requestService) {
+        this.requestService = requestService;
+    }
 
     @GetMapping("{id}")
     public ResponseEntity<Trip> getAllTrips(@PathVariable long id){

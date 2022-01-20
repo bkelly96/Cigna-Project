@@ -4,7 +4,6 @@ package com.Team5.HotelReservation.controller;
 import com.Team5.HotelReservation.Service.ExperienceRequestService;
 import com.Team5.HotelReservation.exception.ExperienceNotFoundException;
 import com.Team5.HotelReservation.model.Experience;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +17,16 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/experience/")
-
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-
 public class ExperienceController {
 
     @Autowired
     private final ExperienceRequestService requestService;
+
+    public ExperienceController(ExperienceRequestService requestService) {
+        this.requestService = requestService;
+    }
 
     @GetMapping("{expId}")
     public ResponseEntity<Experience> getExperienceById(@PathVariable long expId) {

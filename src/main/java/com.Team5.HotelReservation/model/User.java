@@ -1,10 +1,7 @@
 package com.Team5.HotelReservation.model;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -15,8 +12,6 @@ import java.util.List;
 @Entity
 @Table(name = "User")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class User {
 
     @Id //Primary Key for Unique Users
@@ -50,4 +45,19 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Trip> tripId;
 
+    public User(Long id, String username, String password, String fName, String lName, String email, String role, boolean isEnabled, List<Experience> expId, List<Trip> tripId) {
+        Id = id;
+        this.username = username;
+        this.password = password;
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+        this.role = role;
+        this.isEnabled = isEnabled;
+        this.expId = expId;
+        this.tripId = tripId;
+    }
+
+    public User() {
+    }
 }
