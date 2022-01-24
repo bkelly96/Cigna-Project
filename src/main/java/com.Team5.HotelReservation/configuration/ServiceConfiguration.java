@@ -14,6 +14,12 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.PreUpdate;
 
+/*
+ Constraint Violation Exceptions Customer Responmse
+ Create YML file and create a message (Please provide valid user name, password, username empty,
+ //Store it and pull it from property) Each constraint should be in the property file
+ */
+
 @Configuration
 @ComponentScan("com.Team5.HotelReservation.repository")
 public class ServiceConfiguration {
@@ -38,29 +44,21 @@ public class ServiceConfiguration {
 
 
     @Bean
-    @Primary
-    @Qualifier("expRepo")
-    public ExperienceRequestService expService(){
+    public ExperienceRequestService experienceRequestService(){
         return new ExperienceRequestService(experienceRepository);
     }
 
     @Bean
-    @Primary
-    @Qualifier("hotelRepo")
-    public HotelRequestServiceImplementation hotelService(){
+    public HotelRequestServiceImplementation hotelRequestServiceImplementation(){
         return new HotelRequestServiceImplementation(hotelRepository, paginatedRepository);
     }
 
     @Bean
-    @Primary
-    @Qualifier("tripRepo")
-    public TripRequestService tripService(){
+    public TripRequestService tripRequestService(){
         return new TripRequestService(tripRepository);
     }
 
     @Bean
-    @Primary
-    @Qualifier("userRepo")
     public UserRequestServiceImplementation userService(){
         return new UserRequestServiceImplementation(userRepository, userPaginatedRepository);
     }

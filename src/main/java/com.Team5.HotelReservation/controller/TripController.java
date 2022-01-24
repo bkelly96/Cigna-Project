@@ -16,15 +16,15 @@ import static org.springframework.http.HttpStatus.*;
 public class TripController {
 
 
-    private final TripRequestService requestService;
+    private final TripRequestService tripRequestService;
 
-    public TripController(TripRequestService requestService) {
-        this.requestService = requestService;
+    public TripController(TripRequestService tripRequestService) {
+        this.tripRequestService = tripRequestService;
     }
 
     @GetMapping("{id}")
     public ResponseEntity<Trip> getAllTrips(@PathVariable long id){
-        Trip trip = requestService.getTripById(id);
+        Trip trip = tripRequestService.getTripById(id);
         if(trip == null){
             throw new TripNotFoundException("Trip Not Found");
         }
@@ -33,19 +33,19 @@ public class TripController {
 
     @PostMapping
     public ResponseEntity createTrip(@RequestBody Trip trip){
-        requestService.createTrip(trip);
+        tripRequestService.createTrip(trip);
         return new ResponseEntity(CREATED);
     }
 
     @PutMapping("/{id}/{status}")
     public ResponseEntity updateTrip(@PathVariable long id, @PathVariable Room room){
-        requestService.setRoom(id, room);
+        tripRequestService.setRoom(id, room);
         return new ResponseEntity(OK);
     }
 
     @DeleteMapping("/Delete/{id}")
     public void deleteTrip(@PathVariable long id){
-        requestService.deleteTrip(id);
+        tripRequestService.deleteTrip(id);
     }
 
 

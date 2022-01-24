@@ -22,15 +22,15 @@ import java.rmi.ServerException;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
-    private final UserRequestServiceImplementation requestService;
+    private final UserRequestServiceImplementation userRequestServiceImplementation;
 
-    public UserController(UserRequestServiceImplementation requestService) {
-        this.requestService = requestService;
+    public UserController(UserRequestServiceImplementation userRequestServiceImplementation) {
+        this.userRequestServiceImplementation = userRequestServiceImplementation;
     }
 
     @GetMapping
     public Page<User> getAllHotels(@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize){
-        Page<User> user = this.requestService.findPaginated(pageNumber,pageSize);
+        Page<User> user = this.userRequestServiceImplementation.findPaginated(pageNumber,pageSize);
         if(user == null){
             throw new NoDataFoundException();
         }
@@ -39,7 +39,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable long id){
-        User user = requestService.findByIdentificationNumber(id);
+        User user = userRequestServiceImplementation.findByIdentificationNumber(id);
         if(user == null){
             throw new UserNotFoundException("User Not Found");
         }
@@ -48,7 +48,7 @@ public class UserController {
 
     @PostMapping("/createUser")
     public ResponseEntity<User> createUser(@RequestBody User newUser) throws ServerException {
-        User user = requestService.save(newUser);
+        User user = userRequestServiceImplementation.save(newUser);
         if(user == null){
             throw new ServerException("User Not Created");
         }else{
@@ -59,12 +59,12 @@ public class UserController {
 
     @PutMapping("/updateUser")
     public ResponseEntity<User> updateHotelById(@RequestBody User user){
-        User userById = requestService.findByIdentificationNumber(21);
+        User userById = userRequestServiceImplementation.findByIdentificationNumber(21);
         HttpStatus status;
         if(userById == null){
             throw new HotelNotFoundException("Specified User Not Found");
         }else{
-            userById = requestService.updateHotel(user);
+            userById = userRequestServiceImplementation.updateHotel(user);
             status = OK;
         }
         return new ResponseEntity<User>(userById,status);
@@ -72,7 +72,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteHotel(@PathVariable long id){
-        boolean isDeleted = requestService.deleteAsset(id);
+        boolean isDeleted = userRequestServiceImplementation.deleteAsset(id);
         HttpStatus status;
         String message;
         if(isDeleted){

@@ -5,7 +5,6 @@ import com.Team5.HotelReservation.repository.ExperienceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
 public class ExperienceRequestService {
 
     @Autowired

@@ -22,15 +22,15 @@ import static org.springframework.http.HttpStatus.OK;
 public class ExperienceController {
 
     @Autowired
-    private final ExperienceRequestService requestService;
+    private final ExperienceRequestService experienceRequestService;
 
     public ExperienceController(ExperienceRequestService requestService) {
-        this.requestService = requestService;
+        this.experienceRequestService = requestService;
     }
 
     @GetMapping("{expId}")
     public ResponseEntity<Experience> getExperienceById(@PathVariable long expId) {
-        Experience experience = requestService.getExperienceById(expId);
+        Experience experience = experienceRequestService.getExperienceById(expId);
         if(experience == null){
             throw new ExperienceNotFoundException("Experience Not Found");
         }

@@ -24,10 +24,10 @@ import static org.springframework.http.HttpStatus.OK;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class HotelController {
 
-    private final HotelRequestServiceImplementation requestService;
+    private final HotelRequestServiceImplementation hotelRequestServiceImplementation;
 
-    public HotelController(HotelRequestServiceImplementation requestService) {
-        this.requestService = requestService;
+    public HotelController(HotelRequestServiceImplementation hotelRequestServiceImplementation) {
+        this.hotelRequestServiceImplementation = hotelRequestServiceImplementation;
     }
 
     //    @GetMapping
@@ -38,7 +38,7 @@ public class HotelController {
 
     @GetMapping
     public Page<Hotel> getAllHotels(@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize){
-        Page<Hotel> hotel = this.requestService.findPaginated(pageNumber,pageSize);
+        Page<Hotel> hotel = this.hotelRequestServiceImplementation.findPaginated(pageNumber,pageSize);
         if(hotel == null){
             throw new NoDataFoundException();
         }
@@ -47,7 +47,7 @@ public class HotelController {
 
     @GetMapping("/{hotelId}")
     public ResponseEntity<Hotel> getHotelById(@PathVariable long hotelId) {
-        Hotel hotel = requestService.findByIdentificationNumber(hotelId);
+        Hotel hotel = hotelRequestServiceImplementation.findByIdentificationNumber(hotelId);
         if(hotel == null){
             throw new HotelNotFoundException("Hotel Not Found");
         }
@@ -56,7 +56,7 @@ public class HotelController {
 
     @PostMapping("/createHotel")
     public ResponseEntity<Hotel> createHotel(@RequestBody Hotel newHotel) throws ServerException{
-        Hotel hotel = requestService.save(newHotel);
+        Hotel hotel = hotelRequestServiceImplementation.save(newHotel);
         if(hotel == null){
             throw new ServerException("Hotel Not Created");
         }else{
@@ -66,12 +66,12 @@ public class HotelController {
 
     @PutMapping("/updateHotel")
     public ResponseEntity<Hotel> updateHotelById(@RequestBody Hotel hotel){
-        Hotel hotelById = requestService.findByIdentificationNumber(21);
+        Hotel hotelById = hotelRequestServiceImplementation.findByIdentificationNumber(21);
         HttpStatus status;
         if(hotelById == null){
             throw new HotelNotFoundException("Specified Hotel Not Found");
         }else{
-            hotelById = requestService.updateHotel(hotel);
+            hotelById = hotelRequestServiceImplementation.updateHotel(hotel);
             status = OK;
         }
         return new ResponseEntity<Hotel>(hotelById,status);
@@ -79,7 +79,7 @@ public class HotelController {
 
     @DeleteMapping("/{hotelId}")
     public ResponseEntity<String> deleteHotel(@PathVariable long hotelId){
-        boolean isDeleted = requestService.deleteAsset(hotelId);
+        boolean isDeleted = hotelRequestServiceImplementation.deleteAsset(hotelId);
         HttpStatus status;
         String message;
         if(isDeleted){
