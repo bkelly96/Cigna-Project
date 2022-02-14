@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.PreUpdate;
 
 /*
- Constraint Violation Exceptions Customer Responmse
+ Constraint Violation Exceptions Customer Response
  Create YML file and create a message (Please provide valid user name, password, username empty,
  //Store it and pull it from property) Each constraint should be in the property file
  */

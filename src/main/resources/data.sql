@@ -52,3 +52,9 @@ insert into Experience (exp_Id,user_Id, hotel_Id, hotel_Ref, rating, stay_Date, 
 insert into Experience (exp_Id,user_Id, hotel_Id, hotel_Ref, rating, stay_Date, comment) values (20l, 10001l, 18l, 18l, 5, '08/17/2012', 'the stay was pog champ')
 
 insert into Trip (trip_Id, check_In, check_Out, room) values (1l, '12/01/2012', '12/05/2012', 'Single')
+insert into Trip (trip_Id, check_In, check_Out, room) values (2l, '12/01/2012', '12/05/2012', 'Single')
+insert into Trip (trip_Id, check_In, check_Out, room) values (3l, '12/01/2012', '12/05/2012', 'Single')
+insert into Trip (trip_Id, check_In, check_Out, room) values (4l, '12/01/2012', '12/05/2012', 'Double')
+insert into Trip (trip_Id, check_In, check_Out, room) values (5l, '12/01/2012', '12/05/2012', 'Double')
+insert into Trip (trip_Id, check_In, check_Out, room) values (6l, '12/01/2012', '12/05/2012', 'Double')
+insert into Trip (trip_Id, check_In, check_Out, room) values (7l, '12/01/2012', '12/05/2012', 'Double')
